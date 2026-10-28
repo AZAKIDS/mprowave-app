@@ -4,7 +4,7 @@ Make music on your phone: sketch tracks, write lyrics with AI, and share with ot
 
 ## Download
 
-Get the latest APK from **[Releases](https://github.com/AZAKIDS/mprowave-app/releases/latest)**.
+Visit **https://mprowave.netlify.app** (or scan its QR code with your phone), or get the APK from **[Releases](https://github.com/AZAKIDS/mprowave-app/releases/latest)**.
 
 ## Install
 
