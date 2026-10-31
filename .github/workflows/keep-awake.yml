@@ -1,0 +1,24 @@
+# Keeps the MproWave server awake. Render's free plan sleeps after 15 minutes
+# without visitors, and Aiven powers off a free database nobody uses, so this
+# visits the server every 10 minutes and has it run a tiny database query.
+#
+# A failed run (GitHub emails you) means the server or database is down:
+# check Render's logs and that the Aiven database is powered on.
+name: Keep server awake
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping the API and its database
+        # A sleeping server takes up to a minute to wake, hence the long timeout.
+        run: >
+          curl --fail --silent --show-error --max-time 120
+          --retry 2 --retry-delay 15 --retry-all-errors
+          https://mprowave-api.onrender.com/api/health/db
